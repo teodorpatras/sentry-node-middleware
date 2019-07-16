@@ -28,7 +28,7 @@ app.get('/buckets', async (req, res, next) => {
 
 app.use((err, req, res, next) => {
     Sentry.withScope(scope => {
-        scope.setExtra('meta', err.data);
+        scope.setExtras(err.data);
         // Sentry.errorHandler handles only errors
         // without statusCode or with statusCode >= 500
         if (err.statusCode >= 500) {
